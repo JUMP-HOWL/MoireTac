@@ -130,10 +130,10 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Visuotactile sensors typically employ sparse marker arrays that limit spatial resolution and lack clear analytical force-to-image relationships. To solve this problem, we present <strong>MoiréTac</strong>, a dual-mode sensor that generates dense interference patterns via overlapping micro-gratings within a transparent architecture. When two gratings overlap with slight misalignment, they create moiré patterns that amplify microscopic deformations. The design preserves optical clarity for vision tasks while producing continuous moiré fields for tactile sensing.
+            Visuotactile sensors typically employ sparse marker arrays that limit spatial resolution and lack clear analytical force-to-image relationships. To solve this problem, we present <strong>MoiréTac</strong>, a dual-mode sensor that generates dense interference patterns via overlapping micro-gratings within a transparent architecture. When two gratings overlap with misalignment, they create moiré patterns that amplify microscopic deformations. The design preserves optical clarity for vision tasks while producing continuous moiré fields for tactile sensing, enabling simultaneous 6-axis force/torque measurement, contact localization, and visual perception.
           </p>
           <p>
-            We combine physics-based features (brightness, phase gradient, orientation, and period) from moiré patterns with deep spatial features. These are mapped to six-axis force/torque measurements, enabling interpretable force/torque regression through end-to-end learning. Experimental results demonstrate three capabilities: six-axis force/torque measurement with R²>0.98 across tested axes; sensitivity tuning through geometric parameters (threefold gain adjustment); and vision functionality for object classification despite moiré overlay. Finally, we integrate the sensor into a robotic arm for cap removal with coordinated force and torque control, validating its potential for dexterous manipulation.
+            We combine physics-based features (brightness, phase gradient, orientation, and period) from moiré patterns with deep spatial features. These are mapped to 6-axis force/torque measurements, enabling interpretable regression through end-to-end learning. Experimental results demonstrate three capabilities: force/torque measurement with R²>0.98 across tested axes; sensitivity tuning through geometric parameters (threefold gain adjustment); and vision functionality for object classification despite moiré overlay. Finally, we integrate the sensor into a robotic arm for cap removal with coordinated force and torque control, validating its potential for dexterous manipulation.
           </p>
         </div>
       </div>
@@ -164,7 +164,7 @@
         <div class="content has-text-left">
           <ol>
             <li><strong>Moiré interferometry for visuotactile sensing</strong>: We apply moiré pattern amplification to transform marker-based sensing into continuous interference fields, achieving R²>0.98 across six force/torque axes. Unlike sparse marker methods that interpolate between discrete points, our continuous fields directly encode mechanical deformations at every pixel.</li>
-            <li><strong>Physics-grounded force/torque framework</strong>: We establish analytical mappings from four moiré observables (I, ∇φ, θ, Λ) to six-axis wrench, enabling sensitivity adjustment through geometric parameters. This interpretable approach permits analytical sensitivity analysis and systematic calibration transfer, capabilities absent in pure learning-based methods.</li>
+            <li><strong>Physics-informed force/torque framework</strong>: We establish analytical mappings from four moiré observables (I, ∇φ, θ, Λ) to 6-axis wrench, enabling sensitivity adjustment through geometric parameters. This interpretable approach permits analytical sensitivity analysis and systematic calibration transfer, which are difficult to obtain with purely black-box models.</li>
             <li><strong>Transparent dual-mode operation</strong>: We maintain optical transparency for object recognition while measuring forces, demonstrated in automated cap removal tasks. The preserved visual channel operates concurrently with tactile sensing, unlike opaque sensors that lose visual information upon contact.</li>
           </ol>
         </div>
@@ -176,7 +176,7 @@
         <h2 class="title is-3">Overview</h2>
         <img src="./static/images/image/Fig_Overview_fv.png" alt="Overview" style="width:100%;" />
         <p style="margin-top: 20px;">
-          Overview of MoiréTac. The dual-grating optical system generates moiré observables, which are mapped to force/torque measurements. The top-left panels show how press and rotation affect stripe density and orientation.
+          Overview of MoiréTac. The dual-grating optical system generates moiré observables, which are mapped to force/torque measurements. The top-left panels show how press and rotation affect stripe density and orientation. The application demonstrates dual-mode visual and tactile sensing during robotic manipulation.
         </p>
       </div>
     </div>
@@ -186,7 +186,7 @@
         <h2 class="title is-3">Structure Illustration</h2>
         <img src="./static/images/image/Fig_structure.png" alt="Structure" style="width:100%;" />
         <p style="margin-top: 20px;">
-          Structure illustration showing mapping from Moiré observables (intensity I, phase ∇φ, angle θ, wavelength Λ) to six-axis force/torque sensing with the layered architecture and cross-section view.
+          Structure illustration. (a) Mapping from Moiré observables (intensity I, phase ∇φ, angle θ, period Λ) to 6-axis force/torque sensing. (b) Photo of prototype. (c) Exploded view of layered architecture. (d) Cross-section showing compression-to-fringe coupling. (e) Responses under normal, shear, and twist loading; a waveguided LED produces a contact rim that delineates the boundary and maintains fringe visibility.
         </p>
       </div>
     </div>
@@ -196,7 +196,7 @@
         <h2 class="title is-3">Sensor Fabrication</h2>
         <img src="./static/images/image/Fig_Fabrication.png" alt="Fabrication" style="width:100%;" />
         <p style="margin-top: 20px;">
-          Fabrication process of MoiréTac sensor showing assembly steps from optical base assembly to sensing layer completion and final integration.
+          Fabrication process of MoiréTac sensor showing assembly steps. (a-c) Optical base assembly with LED ring positioning on baffle cap, lower reference grid installation, and acrylic cover bonding. (d-f) Elastomer layer preparation including silicone casting at 60°C for 3 hours, demolding, and thermal bonding to acrylic substrate. (g-h) Sensing layer completion with upper grid placement and final assembly. (i) Fully integrated sensor with camera.
         </p>
       </div>
     </div>
@@ -206,7 +206,7 @@
         <h2 class="title is-3">System Workflow</h2>
         <img src="./static/images/image/Fig_workflow_rect.png" alt="Workflow" style="width:80%;" />
         <p style="margin-top: 20px;">
-          Overview of the MoiréTac processing pipeline with dual-mode operation for vision and tactile sensing.
+          Overview of the MoiréTac processing pipeline. The system employs a GateER (Gated Energy Ratio) module for contact detection and automatic mode switching between vision and tactile sensing. In tactile mode, physics-based features (I, ∇φ, θ, Λ) are extracted and fused with ResNet34 deep features for 6-axis force/torque regression.
         </p>
       </div>
     </div>
@@ -216,7 +216,7 @@
         <h2 class="title is-3">Six-Axis Force/Torque Calibration</h2>
         <img src="./static/images/image/Fig_6axis.png" alt="Six-axis Calibration" style="width:100%;" />
         <p style="margin-top: 20px;">
-          Six-axis force/torque calibration results demonstrating high accuracy (R²>0.98) across all axes with experimental setup using robotic arm and commercial F/T reference sensor.
+          Six-axis force/torque calibration. (a) Experimental setup with robotic arm, commercial F/T reference, and MoiréTac prototype. (b) Force calibration showing linearity for normal force Fz and shear forces Fx, Fy. (c) Torque calibration demonstrating Tz and Tx, Ty performance. Results show R²≥0.99 for forces and R²>0.98 for torques, with tight clustering along identity lines indicating low cross-talk between axes.
         </p>
       </div>
     </div>
@@ -226,7 +226,7 @@
         <h2 class="title is-3">Dual-Mode Manipulation Demonstration</h2>
         <img src="./static/images/image/Fig_Demo1_2.png" alt="Demonstration" style="width:100%;" />
         <p style="margin-top: 20px;">
-          Hand-assisted cap removal demonstrating dual-mode operation with vision-guided approach, force feedback for grip, torque monitoring during rotation, and visual verification upon completion.
+          Hand-assisted cap removal demonstrating dual-mode operation. (a) Task sequence: (1) vision-guided approach to locate cap, (2) press to establish grip with force feedback, (3) rotate to unscrew with torque monitoring, (4) release after completed removal. (b) Corresponding sensor views showing vision-tactile mode transitions. Green box indicates visual target detection, while moiré patterns reveal force/torque during manipulation.
         </p>
       </div>
     </div>
