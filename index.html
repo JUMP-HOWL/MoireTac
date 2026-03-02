@@ -43,9 +43,130 @@
     body {
       zoom: 1.5;
     }
+    /* Navigation bar styles - matching al-folio theme exactly */
+    .project-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e8e8e8;
+      opacity: 0.95;
+      box-shadow: none;
+      padding: 0.5rem 1rem;
+    }
+    .project-navbar .container {
+      max-width: 930px;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .project-nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+    .project-nav-item {
+      position: relative;
+    }
+    .project-nav-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #111111;
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .project-nav-link:hover {
+      color: #0076df;
+      text-decoration: none;
+    }
+    .project-nav-dropdown .project-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .nav-arrow {
+      font-size: 0.7rem;
+    }
+    .project-nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      background-color: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 0.25rem;
+      min-width: 180px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    .project-nav-menu.show {
+      display: block;
+    }
+    .project-nav-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #111111;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      white-space: nowrap;
+    }
+    .project-nav-menu a:hover {
+      color: #0076df;
+      background-color: #ffffff;
+    }
+    /* Add padding to body to account for fixed nav */
+    body {
+      padding-top: 60px;
+    }
   </style>
 </head>
 <body>
+
+<!-- Navigation Bar -->
+<nav class="project-navbar">
+  <div class="container">
+    <ul class="project-nav-list">
+      <li class="project-nav-item project-nav-dropdown">
+        <a class="project-nav-link" onclick="toggleProjectNav(event)">
+          <span>Project Websites</span>
+          <span class="nav-arrow">▼</span>
+        </a>
+        <div class="project-nav-menu" id="projectNavMenu">
+          <a href="https://junhaogong.top/">Home</a>
+          <a href="https://moiretac.junhaogong.top/">MoiréTac</a>
+          <a href="https://ultratac.junhaogong.top/">UltraTac</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+function toggleProjectNav(event) {
+  event.preventDefault();
+  const menu = document.getElementById('projectNavMenu');
+  menu.classList.toggle('show');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.querySelector('.project-nav-dropdown');
+  if (!dropdown.contains(event.target)) {
+    document.getElementById('projectNavMenu').classList.remove('show');
+  }
+});
+</script>
 
 
 <section class="hero">
